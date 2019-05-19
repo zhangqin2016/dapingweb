@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+img{
+	border:none;
+	}
+
+
+.left{
+	float:left;
+	}
+.clear{
+	clear:both;
+	}
+
+
+
+.w_portal_box{
+	width:25%;
+	margin:0 auto;
+	color:#fff;
+	font-size:22px;
+	height: 35vh;
+	font-family:"微软雅黑","宋体";
+	}
+.box_block{
+	height: 100%;
+	display: inline;
+	width:90%;
+	background-size: 100% 94%;
+	background-repeat: no-repeat;
+	background-image: url(../img/bg/box.png);
+	padding:0 1px 10px 0;
+	position:relative;
+	float:left;
+	}
+
+.w_center_title {
+	position: absolute;
+	left: 10%;
+	bottom: 8%;
+	color: #fff;
+	text-align: center;
+	right: 10%;
+}
+.w_center_icon{
+	margin: 0 auto;
+	width: 60%;
+	border-radius: 10px;
+	height: 60%;
+	margin-top:10%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-image: url(../img/bg/111.jpg);
+ }

@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="./back/css/style.css">
+    <link rel="stylesheet" href="./magic-master/dist/magic.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="./zq/choose.css" media="screen">
+<style>
+    .zqbody{
+        background: none!important;
+    }
+    .zq-row{
+        margin: 1em;
+    }
+    .zq-content{
+        height: 100vh;
+    }
+</style>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid zqbody">
+
+    <div  class="container-fluid zq-content" >
+
+    </div>
+</div>
+<canvas height="100%" width="100%" style="position: fixed; top: 0px; left: 0px; z-index: -99; opacity: 1;"  id="waterfall"></canvas>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./back/js/pixi.min.js"></script>
+<script type="text/javascript" src="./back/js/tinycolor.min.js"></script>
+<script  src="./back/js/index.js"></script>
+<script  src="./jquery.nicescroll-master/jquery.nicescroll.min.js"></script>
+<script>
+    $(function () {
+        $(".zq-content").html(getIndex());
+        $("body").niceScroll();
+
+        $(".w_portal_box").click(function () {
+            $(this).toggleClass('magictime puffOut');
+        });
+    })
+
+
+    function getIndex() {
+        return "<div class=\"row zq-row\">\n" +
+            "            <div class=\"w_portal_box\">\n" +
+            "                <div href=\"#\" class=\"box_block\">\n" +
+            "                    <div class=\"w_center_icon\"></div>\n" +
+            "                    <div class=\"w_center_title\">中心概况</div>\n" +
+            "                </div>\n" +
+            "                <div class=\"clear\"></div>\n" +
+            "            </div>\n" +
+            "            <div class=\"w_portal_box\">\n" +
+            "                <div href=\"#\" class=\"box_block\">\n" +
+            "                    <div class=\"w_center_icon\"></div>\n" +
+            "                    <div class=\"w_center_title\">历史沿革</div>\n" +
+            "                </div>\n" +
+            "                <div class=\"clear\"></div>\n" +
+            "            </div>\n" +
+            "            <div class=\"w_portal_box\">\n" +
+            "                <div href=\"#\" class=\"box_block\">\n" +
+            "                    <div class=\"w_center_icon\"></div>\n" +
+            "                    <div class=\"w_center_title\">业务工作</div>\n" +
+            "                </div>\n" +
+            "                <div class=\"clear\"></div>\n" +
+            "            </div>\n" +
+            "            <div class=\"w_portal_box\">\n" +
+            "                <div href=\"#\" class=\"box_block\">\n" +
+            "                    <div class=\"w_center_icon\"></div>\n" +
+            "                    <div class=\"w_center_title\">专项管理</div>\n" +
+            "                </div>\n" +
+            "                <div class=\"clear\"></div>\n" +
+            "            </div>\n" +
+            "            <div class=\"w_portal_box\">\n" +
+            "                <div href=\"#\" class=\"box_block\">\n" +
+            "                    <div class=\"w_center_icon\"></div>\n" +
+            "                    <div class=\"w_center_title\">中心内外</div>\n" +
+            "                </div>\n" +
+            "                <div class=\"clear\"></div>\n" +
+            "            </div>\n" +
+            "            <div class=\"w_portal_box\">\n" +
+            "                <div href=\"#\" class=\"box_block\">\n" +
+            "                    <div class=\"w_center_icon\"></div>\n" +
+            "                    <div class=\"w_center_title\">中心外网</div>\n" +
+            "                </div>\n" +
+            "                <div class=\"clear\"></div>\n" +
+            "            </div>\n" +
+            "            <div class=\"w_portal_box\">\n" +
+            "                <div href=\"#\" class=\"box_block\">\n" +
+            "                    <div class=\"w_center_icon\"></div>\n" +
+            "                    <div class=\"w_center_title\">中心党建</div>\n" +
+            "                </div>\n" +
+            "                <div class=\"clear\"></div>\n" +
+            "       </div>\n" +
+            "            <div class=\"w_portal_box\">\n" +
+            "                <div href=\"#\" class=\"box_block\">\n" +
+            "                    <div class=\"w_center_icon\"></div>\n" +
+            "                    <div class=\"w_center_title\">文化建设</div>\n" +
+            "                </div>\n" +
+            "                <div class=\"clear\"></div>\n" +
+            "            </div>\n" +
+            "        </div>";
+    }
+</script>
+
+
+</body>
+</html>

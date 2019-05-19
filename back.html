@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="./back/css/style.css">
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./magic-master/dist/magic.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" media="screen">
+<style>
+    p {
+        text-indent: 2em;  /*em是相对单位，2em即现在一个字大小的两倍*/
+    }
+
+    .zqbody{
+        width:-webkit-calc(100% - 18em);
+        width:-moz-calc(100% - 18em);
+        width:calc(100% - 18em);
+        float: right;
+    }
+    .jumbotron{
+        background: none;
+    }
+    .zq-text{
+        opacity:0.5;
+    }
+    .zq-zhaopian{
+        text-align: center;
+    }
+    .zq-lingdao{
+        text-align: center;
+    }
+    .zq-zhaopian-info{
+        margin: 0 auto;
+    }
+    .zq-zhaopian-info-alert{
+        filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8;
+        display: none;
+        margin: 0 auto;
+        margin-top:4em;
+    }
+    .a1-4{
+        margin-top:4em;
+    }
+    .zq-menu{
+        margin-top:4em;
+    }
+</style>
+</head>
+<body>
+
+<section id="sidebar">
+    <div class="inner">
+        <nav>
+            <!-- <img src="images/logo.png" alt="" class="logo" /> -->
+            <ul>
+                <li><a href="#" class="scrolly">中心概况</a>
+                </li>
+
+                <li><a href="#" class="scrolly">历史沿革</a></li>
+                <!-- <li><a href="#two">What we do</a></li> -->
+                <li><a href="#" class="scrolly">专项管理</a></li>
+                <li><a href="#" class="scrolly">中心内外</a></li>
+                <li><a href="#" class="scrolly">中心外网</a></li>
+                <li><a href="#" class="scrolly">中心党建</a></li>
+                <li><a href="#" class="scrolly">文化建设</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</section>
+
+<div class="jumbotron jumbotron-fluid zqbody">
+
+    <div  class="container-fluid" id="center">
+
+    </div>
+</div>
+<canvas height="100%" width="100%" style="position: fixed; top: 0px; left: 0px; z-index: -99; opacity: 1;"  id="waterfall"></canvas>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./back/js/pixi.min.js"></script>
+<script type="text/javascript" src="./back/js/tinycolor.min.js"></script>
+<script  src="./back/js/index.js"></script>
+<script  src="./jquery.nicescroll-master/jquery.nicescroll.min.js"></script>
+<script>
+    $(function () {
+
+        $("body").niceScroll();
+    })
+    $('.scrolly').click(function () {
+        $("div[sign='caidan']").remove();
+        $('.scrolly').removeClass("active");
+        $(this).addClass('active');
+        $(this).toggleClass('magictime vanishIn');
+       var text =  $(this).text();
+        $("#center").html(getDiv("0-"+text));
+        $("div[sign='caidan']>button").click(function () {
+
+            $(this).toggleClass('magictime vanishout');
+            var text =  $(this).text();
+
+            switch (text) {
+                case "中心简介":
+                    $("div[sign='caidan']").remove();
+                    $("#center").html(getDiv("1-1"));
+                    $('.carousel').carousel({
+                        interval: 2500
+                    })
+                    break;
+                case "中心领导":
+                    $("div[sign='caidan']").remove();
+                    $("#center").html(getDiv("1-2"));
+                    $("div[name='lingdaoClick']").click(function () {
+                        $("#zhaopianvalue").text($(this).attr("sign")+"现任科技部高技术研究发展中心主任兼科技部知识产权事务中心主任。")
+                        $(".zq-zhaopian-info-alert").show();
+                        $(".zq-zhaopian-info").toggleClass('magictime tinDownIn');
+                    });
+                    break;
+                case "处室介绍":
+                    $("#center").html(getDiv("1-4"));
+                    $(".a1-4").toggleClass('magictime vanishIn');
+                    break;
+            }
+
+        });
+    });
+
+    function getDiv(text) {
+        var html = "";
+        switch (text) {
+            case '0-中心概况':
+                html = "<div class='row'><div sign=\"caidan\" class=\"zq-menu btn-group magictime twisterInUp\" role=\"group\" aria-label=\"Button group with nested dropdown\">\n" +
+                    "  <button type=\"button\" class=\"btn btn-primary\">中心简介</button>\n" +
+                    "  <button type=\"button\" class=\"btn btn-warning\">中心领导</button>\n" +
+                    "  <button type=\"button\" class=\"btn btn-info\">处室介绍</button>\n" +
+                    "</div></div>";
+                break;
+            case   "1-1":
+                var h2 = "<h2>中心简介</h2>"
+                var content = "<p>  科学技术部高技术研究发展中心(科学技术部基础研究管理中心)是国家首批启动改建的中央财政科技计划(专项、基金等)项目管理专业机构，主要承担国家重点研发计划基础前沿类和重大共性关键技术类相关领域重点专项科研项目管理工作,负责组织项目评审、立项、过程管理和结题验收等工作。</p><p> \n" +
+                    "     目前受部际联席会议委托承担25个国家重点研发计划重点专项项目管理；承担改革过渡期国家重点基础研究发展计划(973计划)、国家高技术研究发展计划(863计划)和国家科技支撑计划相关领域项目过程管理和基础性工作；承担国家重点实验室过程管理工作。</p>\n";
+                var huandengpian = "<div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\" data-ride=\"carousel\">\n" +
+                    "  <div class=\"carousel-inner\">\n" +
+                    "    <div class=\"carousel-item active\">\n" +
+                    "      <img class=\"d-block w-100\" src=\"./img/1.jpg\" alt=\"First slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/2.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/3.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/4.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/5.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+
+                    "  </div>\n" +
+                    "</div>";
+                  html = "<div class=\"alert alert-primary magictime twisterInUp zq-text\" role=\"alert\"> "+h2+content+huandengpian+"</div>";
+
+                break;
+
+            case ("1-2"):
+                var link ="<div class=\"row zq-lingdao magictime openUpRightReturn\">\n" +
+                    "  <div class=\"col-2\"> </div><div class=\"col\">\n" +
+                    "    <div class=\"thumbnail\" name='lingdaoClick' sign='刘敏'>\n" +
+                    "      <img src=\"./img/nv.png\" alt=\"\">\n" +
+                    "      <div class=\"caption zq-zhaopian\">\n" +
+                    "        <h5>刘敏</h5>\n" +
+                    "      </div>\n" +
+                    "    </div>\n" +
+                    "  </div>\n" +
+                    "  <div class=\"col\">\n" +
+                    "    <div class=\"thumbnail\" name='lingdaoClick' sign='袁建湘' >\n" +
+                    "      <img src=\"./img/nan.png\" alt=\"\">\n" +
+                    "      <div class=\"caption zq-zhaopian\">\n" +
+                    "        <h5>袁建湘</h5>\n" +
+                    "      </div>\n" +
+                    "    </div>\n" +
+                    "  </div>\n" +
+                    "  <div class=\"col\">\n" +
+                    "    <div class=\"thumbnail\" name='lingdaoClick'  sign='卞曙光'>\n" +
+                    "      <img src=\"./img/nan.png\" alt=\"\">\n" +
+                    "      <div class=\"caption zq-zhaopian\">\n" +
+                    "        <h5>卞曙光</h5>\n" +
+                    "      </div>\n" +
+                    "    </div>\n" +
+                    "  </div>\n" +
+                    "  <div class=\"col\">\n" +
+                    "    <div class=\"thumbnail\" name='lingdaoClick' sign='郑玉琪'>\n" +
+                    "      <img src=\"./img/nan.png\" alt=\"\">\n" +
+                    "      <div class=\"caption zq-zhaopian\" >\n" +
+                    "        <h5>郑玉琪</h5>\n" +
+                    "      </div>\n" +
+                    "    </div>\n" +
+                    "  </div> <div class=\"col-2\"> </div>\n" +
+                    "</div><div class='row zq-zhaopian-info'><div class=\"alert alert-info zq-zhaopian-info-alert\" role=\"alert\"><strong id='zhaopianvalue'>刘敏，现任科技部高技术研究发展中心主任兼科技部知识产权事务中心主任。</strong></div></div>";
+                html = link;
+                break;
+            case "1-4":
+                var html = "<div class='row'><div   class=\"btn-group a1-4\" role=\"group\" aria-label=\"Button group with nested dropdown\">\n" +
+                    "  <button type=\"button\" class=\"btn btn-primary\">综合与技术</button>\n" +
+                    "  <button type=\"button\" class=\"btn btn-warning\">基础研究</button>\n" +
+                    "  <button type=\"button\" class=\"btn btn-info\">高新技术</button>\n" +
+                    "</div></div>";
+                break;
+            default:
+                html =  "<div sign=\"caidan\" class=\" zq-menu btn-group magictime twisterInUp\" role=\"group\" aria-label=\"Button group with nested dropdown\">\n" +
+                "  <button type=\"button\" class=\"btn btn-info\">"+text+"</button>\n" +
+                "</div>";
+                break;
+        }
+
+        return html;
+    }
+    function getMenuDiv(width,title,image,des) {
+
+        return  "  <div class=\"col-"+width+"\">\n" +
+            "    <div class=\"thumbnail\">\n" +
+            "      <img src=\""+image+"\" alt=\"...\">\n" +
+            "      <div class=\"caption\">\n" +
+            "        <h3>"+title+"</h3>\n" +
+            "        <p>"+des+"</p>\n" +
+            "      </div>\n" +
+            "    </div>\n" +
+            "  </div>\n";
+    }
+</script>
+
+
+</body>
+</html>
