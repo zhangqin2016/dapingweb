@@ -14,7 +14,11 @@
     p {
         text-indent: 2em;  /*em是相对单位，2em即现在一个字大小的两倍*/
     }
-
+    .keji{
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-image: url(./img/bg/box.png);
+    }
     .zqbody{
         width:-webkit-calc(100% - 18em);
         width:-moz-calc(100% - 18em);
@@ -62,6 +66,25 @@
         border:none;
         color: #ffffff;
     }
+    .zq-card{
+        display: inline;
+        width: 14%;
+        border: 2px solid #1971c2;
+        border-radius: 5px;
+        margin: 10px;
+    }
+    .zq-card-img{
+        display: inline;
+        width: 50%;
+    }
+    .zq-card-img > img{
+        width: 30%;
+    }
+    .zq-card-title{
+        display: inline;
+        width: 100%;
+        color: #ffffff;
+    }
 </style>
 </head>
 <body>
@@ -76,11 +99,10 @@
 
                 <li><a href="#" class="scrolly">历史沿革</a></li>
                 <!-- <li><a href="#two">What we do</a></li> -->
+                <li><a href="#" class="scrolly">业务工作</a></li>
                 <li><a href="#" class="scrolly">专项管理</a></li>
                 <li><a href="#" class="scrolly">中心内外</a></li>
                 <li><a href="#" class="scrolly">中心外网</a></li>
-                <li><a href="#" class="scrolly">中心党建</a></li>
-                <li><a href="#" class="scrolly">文化建设</a></li>
             </ul>
         </nav>
     </div>
@@ -97,6 +119,8 @@
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/dist/echarts.min.js"></script>
+<script src="./echarts/dark.js"></script>
+<script src="./echarts/china.js"></script>
 <script type="text/javascript" src="./back/js/pixi.min.js"></script>
 <script type="text/javascript" src="./back/js/tinycolor.min.js"></script>
 <script  src="./back/js/index.js"></script>
@@ -107,11 +131,33 @@ function firstcalBack(sign) {
 
     if(sign=="0-历史沿革"){
         getChart("2-0-1");
+        $("#main").toggleClass('magictime vanishIn');
+        showsss
+    }else    if(sign=="0-业务工作"){
+        ininChinaMap("成果分布");
+        ininc1();
+        ininc2();
+        ininc3();
+        ininc4();
+        $(".showsss").toggleClass('magictime vanishIn');
+
+    }else if(sign == "0-专项管理"){
+        $(".zq-card").toggleClass('magictime vanishIn');
+        $(".zq-card").click(function () {
+            $("#center").html("<div class='row showsss' style='padding-top: 1em'><div class='col-3'><div class='row keji'><div id=\"c1\" style=\"width: 100%;height:35vh;\"></div></div><div class='row keji'><div id=\"c2\" style=\"width: 100%;height:35vh;\"></div></div></div><div class='col-6 keji'><div id=\"chinaMap\" style=\"width: 100%;height:70vh;\"></div></div><div class='col-3'><div class='row keji'><div id=\"c3\" style=\"width: 100%;height:35vh;\"></div></div><div class='row keji'><div id=\"c4\" style=\"width: 100%;height:35vh;\"></div></div></div></div>");
+            ininChinaMap("专项分布");
+            ininc1();
+            ininc2();
+            ininc3();
+            ininc4();
+            $(".showsss").toggleClass('magictime vanishIn');
+        });
     }
 }
     var color=["#ff922b","#087f5b","#94d82d", "#1971c2","#3b5bdb","#6741d9","#9c36b5","#faa2c1","#ff8787","#862e9c"]
     $(function () {
-
+        $(".sidebar").niceScroll();
+        $(".inner").niceScroll();
         $("body").niceScroll();
     })
     $('.scrolly').click(function () {
@@ -161,11 +207,49 @@ function firstcalBack(sign) {
     var titles1_1=["综合与财务处","计划与监督处"];
     var titles1_2 = ["基础研究一处","基础研究二处","基础研究三处"];
     var titles1_3 = ["信息处","材料处" ,"先进制造处","能源处" ,"交通处","网络与平台处"]
+    var titles3_1 = ["863成果","973成果" ,"重大专项成果"]
+
     function getDiv(text) {
         var html="";
         switch (text) {
+            case '0-专项管理':{
+                html = "<div class='row keji'><div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div>" +
+                    " <div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div>" +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div>" +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div>" +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
+                    " <div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div></div>";
+                break;
+            }
+            case '0-业务工作':{
+                html = "<div class='row showsss'><div class='col-3'>"+getButtons("成果展示","1",color[0])+"</div> " +
+                    " <div class='col-3'>"+getButtons("专家统计","3",color[1])+"</div>" +
+                    " <div class='col-3' id='m3'>"+getButtons("项目概览","3",color[2])+"</div></div>" +
+                    "<div class='row showsss' style='padding-top: 1em'><div class='col-3'><div class='row keji'><div id=\"c1\" style=\"width: 100%;height:35vh;\"></div></div><div class='row keji'><div id=\"c2\" style=\"width: 100%;height:35vh;\"></div></div></div><div class='col-6 keji'><div id=\"chinaMap\" style=\"width: 100%;height:70vh;\"></div></div><div class='col-3'><div class='row keji'><div id=\"c3\" style=\"width: 100%;height:35vh;\"></div></div><div class='row keji'><div id=\"c4\" style=\"width: 100%;height:35vh;\"></div></div></div></div>" +
+                    " ";
+                break;
+            }
             case '0-历史沿革':{
-                html = "              <div id=\"main\" style=\"width: 100%;height:100vh;\"></div>";
+                html = "              <div id=\"main\" style=\"width: 100%;height:50vh;\"></div>";
                 break;
             }
             case '0-中心概况':
@@ -348,48 +432,74 @@ function firstcalBack(sign) {
     function getChart(sign) {
 
         var data = [
-            [[28604,77,17096869,'Australia',1990],[31163,77.4,27662440,'Canada',1990],[1516,68,1154605773,'China',1990],[13670,74.7,10582082,'Cuba',1990],[28599,75,4986705,'Finland',1990],[29476,77.1,56943299,'France',1990],[31476,75.4,78958237,'Germany',1990],[28666,78.1,254830,'Iceland',1990],[1777,57.7,870601776,'India',1990],[29550,79.1,122249285,'Japan',1990],[2076,67.9,20194354,'North Korea',1990],[12087,72,42972254,'South Korea',1990],[24021,75.4,3397534,'New Zealand',1990],[43296,76.8,4240375,'Norway',1990],[10088,70.8,38195258,'Poland',1990],[19349,69.6,147568552,'Russia',1990],[10670,67.3,53994605,'Turkey',1990],[26424,75.7,57110117,'United Kingdom',1990],[37062,75.4,252847810,'United States',1990]],
-            [[44056,81.8,23968973,'Australia',2015],[43294,81.7,35939927,'Canada',2015],[13334,76.9,1376048943,'China',2015],[21291,78.5,11389562,'Cuba',2015],[38923,80.8,5503457,'Finland',2015],[37599,81.9,64395345,'France',2015],[44053,81.1,80688545,'Germany',2015],[42182,82.8,329425,'Iceland',2015],[5903,66.8,1311050527,'India',2015],[36162,83.5,126573481,'Japan',2015],[1390,71.4,25155317,'North Korea',2015],[34644,80.7,50293439,'South Korea',2015],[34186,80.6,4528526,'New Zealand',2015],[64304,81.6,5210967,'Norway',2015],[24787,77.3,38611794,'Poland',2015],[23038,73.13,143456918,'Russia',2015],[19360,76.5,78665830,'Turkey',2015],[38225,81.4,64715810,'United Kingdom',2015],[53354,79.1,321773631,'United States',2015]]
+            [[2019-01-11,77,17096869,'业务工作',1990],[31163,77.4,27662440,'文化建设',1990],[1516,68,1154605773,'党建工作',1990],[13670,74.7,10582082,'业务工作',1990],[28599,75,4986705,'文化建设',1990],[29476,77.1,56943299,'France',1990],[31476,75.4,78958237,'文化建设',1990],[28666,78.1,254830,'Iceland',1990],[1777,57.7,870601776,'India',1990],[29550,79.1,122249285,'Japan',1990],[2076,67.9,20194354,'North Korea',1990],[12087,72,42972254,'South Korea',1990],[24021,75.4,3397534,'New Zealand',1990],[43296,76.8,4240375,'Norway',1990],[10088,70.8,38195258,'Poland',1990],[19349,69.6,147568552,'Russia',1990],[10670,67.3,53994605,'Turkey',1990],[26424,75.7,57110117,'United Kingdom',1990],[37062,75.4,252847810,'United States',1990]],
+            [[28604,77,17096869,'业务工作',1990],[31163,77.4,27662440,'文化建设',1990],[1516,68,1154605773,'党建工作',1990],[13670,74.7,10582082,'业务工作',1990],[28599,75,4986705,'文化建设',1990],[29476,77.1,56943299,'France',1990],[31476,75.4,78958237,'文化建设',1990],[28666,78.1,254830,'Iceland',1990],[1777,57.7,870601776,'India',1990],[29550,79.1,122249285,'Japan',1990],[2076,67.9,20194354,'North Korea',1990],[12087,72,42972254,'South Korea',1990],[24021,75.4,3397534,'New Zealand',1990],[43296,76.8,4240375,'Norway',1990],[10088,70.8,38195258,'Poland',1990],[19349,69.6,147568552,'Russia',1990],[10670,67.3,53994605,'Turkey',1990],[26424,75.7,57110117,'United Kingdom',1990],[37062,75.4,252847810,'United States',1990]],
+            [[44056,81.8,23968973,'业务工作',2015],[43294,81.7,35939927,'文化建设',2015],[13334,76.9,1376048943,'党建工作',2015],[21291,78.5,11389562,'业务工作',2015],[38923,80.8,5503457,'文化建设',2015],[37599,81.9,64395345,'France',2015],[44053,81.1,80688545,'文化建设',2015],[42182,82.8,329425,'Iceland',2015],[5903,66.8,1311050527,'India',2015],[36162,83.5,126573481,'Japan',2015],[1390,71.4,25155317,'North Korea',2015],[34644,80.7,50293439,'South Korea',2015],[34186,80.6,4528526,'New Zealand',2015],[64304,81.6,5210967,'Norway',2015],[24787,77.3,38611794,'Poland',2015],[23038,73.13,143456918,'Russia',2015],[19360,76.5,78665830,'Turkey',2015],[38225,81.4,64715810,'United Kingdom',2015],[53354,79.1,321773631,'United States',2015]]
         ];
-
+        var itemStyle = {
+            normal: {
+                opacity: 0.8,
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowOffsetY: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+        };
         option = {
-            backgroundColor: '#404a59',
+            backgroundColor:'',
             title: {
-                text: '1990 与 2015 年各国家人均寿命与 GDP'
+                text: '历史沿革',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 16
+                }
             },
             tooltip: {
                 padding: 10,
                 backgroundColor: '#222',
-                borderColor: '#777',
+                borderColor: '#ffffff',
                 borderWidth: 1,
                 formatter: function (obj) {
-
-                    return '1';
-
+                    return '2015年成立改建工作小组，制定改建工作方案、构建管理制度体系、完善条件保障措施、健全风险防控机制';
                 }
             },
+            color: [
+                '#dd4444', '#fec42c', '#80F1BE'
+            ],
             legend: {
                 right: 10,
-                data: ['1990', '2015']
+                data: ['业务工作', '文化建设','党建工作'],
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 16
+                }
             },
             xAxis: {
-                splitLine: {
+                type: 'value',
+                name: '日期',
+                nameTextStyle: {
+                    color: '#fff',
+                    fontSize: 14
+                },
+                axisLine: {
                     lineStyle: {
-                        type: 'dashed'
+                        color: '#eee'
                     }
                 }
             },
             yAxis: {
-
-                splitLine: {
-                    lineStyle: {
-                        type: 'dashed'
-                    }
+                nameTextStyle: {
+                    color: '#fff',
+                    fontSize: 16
                 },
-                scale: true
+                axisLine: {
+                    lineStyle: {
+                        color: '#eee'
+                    }
+                }
             },
             series: [{
-                name: '1990',
+                name: '业务工作',
                 data: data[0],
                 type: 'scatter',
                 symbolSize: function (data) {
@@ -404,22 +514,9 @@ function firstcalBack(sign) {
                         position: 'top'
                     }
                 },
-                itemStyle: {
-                    normal: {
-                        shadowBlur: 10,
-                        shadowColor: 'rgba(120, 36, 50, 0.5)',
-                        shadowOffsetY: 5,
-                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
-                            offset: 0,
-                            color: 'rgb(251, 118, 123)'
-                        }, {
-                            offset: 1,
-                            color: 'rgb(204, 46, 72)'
-                        }])
-                    }
-                }
+                itemStyle: itemStyle
             }, {
-                name: '2015',
+                name: '文化建设',
                 data: data[1],
                 type: 'scatter',
                 symbolSize: function (data) {
@@ -434,25 +531,292 @@ function firstcalBack(sign) {
                         position: 'top'
                     }
                 },
-                itemStyle: {
-                    normal: {
-                        shadowBlur: 10,
-                        shadowColor: 'rgba(25, 100, 150, 0.5)',
-                        shadowOffsetY: 5,
-                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
-                            offset: 0,
-                            color: 'rgb(129, 227, 238)'
-                        }, {
-                            offset: 1,
-                            color: 'rgb(25, 183, 207)'
-                        }])
+                itemStyle: itemStyle
+            }, {
+                name: '党建工作',
+                data: data[2],
+                type: 'scatter',
+                symbolSize: function (data) {
+                    return Math.sqrt(data[2]) / 5e2;
+                },
+                label: {
+                    emphasis: {
+                        show: true,
+                        formatter: function (param) {
+                            return param.data[3];
+                        },
+                        position: 'top'
                     }
-                }
+                },
+                itemStyle:itemStyle
             }]
         };
-        var myChart = echarts.init(document.getElementById('main'));
+        var myChart = echarts.init(document.getElementById('main'), 'dark');
         myChart.setOption(option);
     }
+
+
+    function ininChinaMap(title) {
+        var mydata = [
+            {name: '北京',value: '100' },{name: '天津',value: randomData() },
+            {name: '上海',value: randomData() },{name: '重庆',value: randomData() },
+            {name: '河北',value: randomData() },{name: '河南',value: randomData() },
+            {name: '云南',value: randomData() },{name: '辽宁',value: randomData() },
+            {name: '黑龙江',value: randomData() },{name: '湖南',value: randomData() },
+            {name: '安徽',value: randomData() },{name: '山东',value: randomData() },
+            {name: '新疆',value: randomData() },{name: '江苏',value: randomData() },
+            {name: '浙江',value: randomData() },{name: '江西',value: randomData() },
+            {name: '湖北',value: randomData() },{name: '广西',value: randomData() },
+            {name: '甘肃',value: randomData() },{name: '山西',value: randomData() },
+            {name: '内蒙古',value: randomData() },{name: '陕西',value: randomData() },
+            {name: '吉林',value: randomData() },{name: '福建',value: randomData() },
+            {name: '贵州',value: randomData() },{name: '广东',value: randomData() },
+            {name: '青海',value: randomData() },{name: '西藏',value: randomData() },
+            {name: '四川',value: randomData() },{name: '宁夏',value: randomData() },
+            {name: '海南',value: randomData() },{name: '台湾',value: randomData() },
+            {name: '香港',value: randomData() },{name: '澳门',value: randomData() }
+        ];
+        var optionMap = {
+            backgroundColor:'',
+            title: {
+                text: title,
+                subtext: '',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item'
+            },
+
+            //左侧小导航图标
+            visualMap: {
+                show : true,
+                x: 'left',
+                y: 'center',
+                splitList: [
+                    {start: 500, end:600},{start: 400, end: 500},
+                    {start: 300, end: 400},{start: 200, end: 300},
+                    {start: 100, end: 200},{start: 0, end: 100},
+                ],
+                color: ['#5475f5', '#9feaa5', '#85daef','#74e2ca', '#e6ac53', '#9fb5ea']
+            },
+
+            //配置属性
+            series: [{
+                name: '数据',
+                type: 'map',
+                mapType: 'china',
+                roam: true,
+                label: {
+                    normal: {
+                        show: true  //省份名称
+                    },
+                    emphasis: {
+                        show: false
+                    }
+                },
+                data:mydata  //数据
+            }]
+        };
+        //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chinaMap'), 'dark');
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(optionMap);
+    }
+function randomData() {
+    return Math.round(Math.random()*500);
+}
+
+function ininc1() {
+    option = {
+        backgroundColor: '',
+
+        title: {
+            text: 'Customized Pie',
+            left: 'center',
+            top: 20,
+            textStyle: {
+                color: '#ccc'
+            }
+        },
+
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+
+        visualMap: {
+            show: false,
+            min: 80,
+            max: 600,
+            inRange: {
+                colorLightness: [0, 1]
+            }
+        },
+        series : [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:274, name:'联盟广告'},
+                    {value:235, name:'视频广告'},
+                    {value:400, name:'搜索引擎'}
+                ].sort(function (a, b) { return a.value - b.value; }),
+                roseType: 'radius',
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        lineStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        },
+                        smooth: 0.2,
+                        length: 10,
+                        length2: 20
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#c23531',
+                        shadowBlur: 200,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                },
+
+                animationType: 'scale',
+                animationEasing: 'elasticOut',
+                animationDelay: function (idx) {
+                    return Math.random() * 200;
+                }
+            }
+        ]
+    };
+    var myChart = echarts.init(document.getElementById('c1'), 'dark');
+
+    //使用制定的配置项和数据显示图表
+    myChart.setOption(option);
+}
+
+function ininc3() {
+    option = {
+        backgroundColor: '',
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['product', '2015', '2016', '2017'],
+                ['Matcha Latte', 43.3, 85.8, 93.7],
+                ['Milk Tea', 83.1, 73.4, 55.1],
+                ['Cheese Cocoa', 86.4, 65.2, 82.5],
+                ['Walnut Brownie', 72.4, 53.9, 39.1]
+            ]
+        },
+        xAxis: {type: 'category'},
+        yAxis: {},
+        // Declare several bar series, each will be mapped
+        // to a column of dataset.source by default.
+        series: [
+            {type: 'bar'},
+            {type: 'bar'},
+            {type: 'bar'}
+        ]
+    };
+    var myChart = echarts.init(document.getElementById('c3'), 'dark');
+
+    //使用制定的配置项和数据显示图表
+    myChart.setOption(option);
+}
+function ininc2() {
+    option = {
+        backgroundColor: '',
+    legend: {},
+    tooltip: {},
+    dataset: {
+        source: [
+            ['product', '2015', '2016', '2017'],
+            ['Matcha Latte', 43.3, 85.8, 93.7],
+            ['Milk Tea', 83.1, 73.4, 55.1],
+            ['Cheese Cocoa', 86.4, 65.2, 82.5],
+            ['Walnut Brownie', 72.4, 53.9, 39.1]
+        ]
+    },
+    xAxis: {type: 'category'},
+    yAxis: {},
+    // Declare several bar series, each will be mapped
+    // to a column of dataset.source by default.
+    series: [
+        {type: 'bar'},
+        {type: 'bar'},
+        {type: 'bar'}
+    ]
+};
+    var myChart = echarts.init(document.getElementById('c2'), 'dark');
+
+    //使用制定的配置项和数据显示图表
+    myChart.setOption(option);
+}
+function ininc4() {
+
+    option = {
+        backgroundColor: '',
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ]
+            }
+        ]
+    };
+
+    var myChart = echarts.init(document.getElementById('c4'), 'dark');
+
+    //使用制定的配置项和数据显示图表
+    myChart.setOption(option);
+}
 </script>
 
 
