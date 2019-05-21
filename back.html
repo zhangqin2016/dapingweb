@@ -199,6 +199,9 @@ function firstcalBack(sign) {
                 case "材料处":
                     $("#center").html(getDiv("3-3-2"));
                     break;
+                default:
+                    $("#center").html(getDiv("default"));
+                    break;
             }
 
         });
@@ -213,7 +216,7 @@ function firstcalBack(sign) {
         var html="";
         switch (text) {
             case '0-专项管理':{
-                html = "<div class='row keji'><div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div>" +
+                html = "<div class='row keji' style='margin-top: 10vh;'><div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div>" +
                     " <div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
                     "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
                     "<div class='zq-card'><div class='zq-card-img'><img  src=\"./img/chanpin.png\" alt=\"...\" class=\"img-rounded\"></div><div class='zq-card-title'>测试是是是</div></div> " +
@@ -253,10 +256,39 @@ function firstcalBack(sign) {
                 break;
             }
             case '0-中心概况':
-                html = "<div class='row'><div class='col-3'>"+getButtons("中心简介","1",color[0])+"</div> " +
-                    " <div class='col-3'>"+getButtons("中心领导","3",color[1])+"</div>" +
-                    " <div class='col-3' id='m3'>"+getButtons("处室介绍","3",color[2])+"<div class='row' id='m3-1'>"+getCard(titles1[0],titles1_1,3)+getCard(titles1[1],titles1_2,5)+getCard(titles1[2],titles1_3,1)+"</div></div></div>" +
-                    " ";
+                html = "<div style='margin-top: 10vh;margin-left: 10vw'><div class='row' ><div class='col-2'>"+getButtons("中心简介","1",color[0])+"</div> " +
+                    " <div class='col-2'>"+getButtons("中心领导","3",color[1])+"</div>" +
+                    " <div class='col-2' id='m3'>"+getButtons("处室介绍","3",color[2])+"</div></div>" +
+                    "<div class='row'><div class='col-2'  >"+getButtons("基础研究一处","3",color[3])+"</div><div class='col-2'  >"+getButtons("基础研究二处","3",color[4])+"</div><div class='col-2'  >"+getButtons("基础研究三处","3",color[5])+"</div></div>" +
+                    "<div class='row'><div class='col-1'  >"+getButtons("信息处","3",color[1])+"</div><div class='col-1'  >"+getButtons("材料处","3",color[2])+"</div><div class='col-2'  >"+getButtons("先进制造处","3",color[4])+"</div><div class='col-1'  >"+getButtons("能源处","3",color[5])+"</div><div class='col-1'  >"+getButtons("交通处","3",color[6])+"</div><div class='col-1'  >"+getButtons("网络与平台处","3",color[7])+"</div></div></div> ";
+
+                break;
+            case   "default":
+                var h2 = "<h2>内容详情</h2>"
+                var content = "<p>  科学技术部高技术研究发展中心(科学技术部基础研究管理中心)是国家首批启动改建的中央财政科技计划(专项、基金等)项目管理专业机构，主要承担国家重点研发计划基础前沿类和重大共性关键技术类相关领域重点专项科研项目管理工作,负责组织项目评审、立项、过程管理和结题验收等工作。</p><p> \n" +
+                    "     目前受部际联席会议委托承担25个国家重点研发计划重点专项项目管理；承担改革过渡期国家重点基础研究发展计划(973计划)、国家高技术研究发展计划(863计划)和国家科技支撑计划相关领域项目过程管理和基础性工作；承担国家重点实验室过程管理工作。</p>\n";
+                var huandengpian = "<div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\" data-ride=\"carousel\">\n" +
+                    "  <div class=\"carousel-inner\">\n" +
+                    "    <div class=\"carousel-item active\">\n" +
+                    "      <img class=\"d-block w-100\" src=\"./img/1.jpg\" alt=\"First slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/2.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/3.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/4.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/5.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+
+                    "  </div>\n" +
+                    "</div>";
+                html = "<div class=\"alert alert-primary magictime twisterInUp zq-text\" role=\"alert\"> "+h2+content+huandengpian+"</div>";
+
                 break;
             case   "1-1":
                 var h2 = "<h2>中心简介</h2>"
@@ -374,9 +406,31 @@ function firstcalBack(sign) {
                 html = "<div class=\"alert alert-primary magictime twisterInUp zq-text\" role=\"alert\"> "+h2+content+huandengpian+"</div>";
                 break;
             default:
-                html =  "<div sign=\"caidan\" class=\" zq-menu btn-group magictime twisterInUp\" role=\"group\" aria-label=\"Button group with nested dropdown\">\n" +
-                "  <button type=\"button\" class=\"btn btn-info\">"+text+"</button>\n" +
-                "</div>";
+                var h2 = "<h2>中心简介</h2>"
+                var content = "<p>  科学技术部高技术研究发展中心(科学技术部基础研究管理中心)是国家首批启动改建的中央财政科技计划(专项、基金等)项目管理专业机构，主要承担国家重点研发计划基础前沿类和重大共性关键技术类相关领域重点专项科研项目管理工作,负责组织项目评审、立项、过程管理和结题验收等工作。</p><p> \n" +
+                    "     目前受部际联席会议委托承担25个国家重点研发计划重点专项项目管理；承担改革过渡期国家重点基础研究发展计划(973计划)、国家高技术研究发展计划(863计划)和国家科技支撑计划相关领域项目过程管理和基础性工作；承担国家重点实验室过程管理工作。</p>\n";
+                var huandengpian = "<div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\" data-ride=\"carousel\">\n" +
+                    "  <div class=\"carousel-inner\">\n" +
+                    "    <div class=\"carousel-item active\">\n" +
+                    "      <img class=\"d-block w-100\" src=\"./img/1.jpg\" alt=\"First slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/2.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/3.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/4.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+                    "    <div class=\"carousel-item\">\n" +
+                    "      <img class=\"d-block w-100\"  src=\"./img/5.jpg\"  alt=\"Second slide\">\n" +
+                    "    </div>\n" +
+
+                    "  </div>\n" +
+                    "</div>";
+                html = "<div class=\"alert alert-primary magictime twisterInUp zq-text\" role=\"alert\"> "+h2+content+huandengpian+"</div>";
+
                 break;
         }
 
